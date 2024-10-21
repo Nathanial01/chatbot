@@ -8,6 +8,12 @@ class ChatbotServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../public' => public_path('vendor/cyrox/chatbot'),
+        ], 'cyrox-chatbot-assets');
+        $this->publishes([
+            __DIR__.'/../public' => public_path('vendor/cyrox/chatbot'),
+        ], 'public');
         // Load views from the package
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'chatbot');
 
@@ -32,4 +38,5 @@ class ChatbotServiceProvider extends ServiceProvider
             __DIR__.'/../config/chatbot.php', 'chatbot'
         );
     }
+
 }
