@@ -1,6 +1,6 @@
-@extends('Chatbot-package::app')
+@extends('layouts.app')
 
-@section('Chatbot')
+@section('chatbot')
 
     <div>
         <!-- Chatbot Toggle Button -->
@@ -41,7 +41,7 @@
             </div>
 
             <!-- Chat Input -->
-            <div class="flex items-center pt-0 pb-2 pl-2.5">
+            <div class="flex items-center pt-0 pb-1">
                 <form id="chatbot-form" class="flex items-center justify-center w-full space-x-2">
                     <input id="prompt" class="flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2" placeholder="Type your message" value="">
                     <button type="submit" class="ml-3 p-2 rounded-lg bg-none  hover:patill-gray-700text-white">
@@ -76,7 +76,7 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const chatbotIcon = document.getElementById('chatbot-icon');
                 const chatbox = document.getElementById('chatbox');
-                const form = document.getElementById('Chatbot-form');
+                const form = document.getElementById('chatbot-form');
                 const messagesDiv = document.getElementById('messages');
                 const promptInput = document.getElementById('prompt');
                 let chatboxOpened = false;
@@ -104,7 +104,7 @@
                         messagesDiv.insertAdjacentHTML('beforeend', initialMessage);
                         chatboxOpened = true;
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                        NotificationSound.play();  // Play sound when the Chatbot opens
+                        NotificationSound.play();  // Play sound when the chatbot opens
                     }
                 });
 
@@ -127,7 +127,7 @@
                     messagesDiv.insertAdjacentHTML('beforeend', userMessage);
                     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-                    fetch("{{ route('Chatbot.generate') }}", {
+                    fetch("{{ route('chatbot.generate') }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Cyrox\Chatbot\Http\Controllers\ChatbotController; // Ensure correct namespace
+use Cyrox\Chatbot\Http\Controllers\ChatbotController;
 
+// Define the routes for the chatbot
 Route::group(['prefix' => 'chatbot', 'as' => 'chatbot.'], function () {
-    Route::get('/', [ChatbotController::class, 'index'])->name('index');  // Renders the Chatbot page
-    Route::post('/generate-response', [ChatbotController::class, 'generateResponse'])->name('generate'); // Handles Chatbot response
+    // Render the chatbot view
+    Route::get('/', [ChatbotController::class, 'index'])->name('index');
+
+    // Handle chatbot response generation via POST
+    Route::post('/generate-response', [ChatbotController::class, 'generateResponse'])->name('generate');
 });
