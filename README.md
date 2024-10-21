@@ -1,3 +1,7 @@
+
+#composer require cyrox/chatbot:dev-main#
+
+
 Cyrox Chatbot
 This is a lightweight chatbot package that can be easily embedded into any website via Composer.
 It integrates with OpenAI to provide chatbot functionality.
