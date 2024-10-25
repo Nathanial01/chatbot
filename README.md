@@ -43,3 +43,4 @@ Now that everything is set up, you can include the chatbot component in your Lar
 by using:
 @include('chatbot::components.chatbot')
 This will render the chatbot in your application's frontend.
+move the publice forlde from vendor/cyrox/chatbot/public to ur laravel seceleton public folder
