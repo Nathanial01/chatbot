@@ -8,31 +8,29 @@ class ChatbotServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/CreateChatHistoriesTable');
+        // Automatically load migrations from the package
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
+        // Publish migrations (optional if auto-loaded)
         $this->publishes([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
-        ], 'CreateChatHistoriesTable');
+        ], 'chatbot-migrations');
 
-
+        // Publish assets (public-facing files)
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/cyrox/chatbot'),
+            __DIR__ . '/../public' => public_path('vendor/cyrox/chatbot'),
         ], 'cyrox-chatbot-assets');
-        $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/cyrox/chatbot'),
-        ], 'public');
-        // Load views from the package
+
+        // Load and publish views
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'chatbot');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'chatbot.generate');
-        // Publish views
         $this->publishes([
-            __DIR__.'/../resources/views/chatbot.blade.php' => resource_path('views/vendor/cyrox/chatbot/chatbot.blade.php'),
-        ], 'views');
+            __DIR__.'/../resources/views' => resource_path('views/vendor/cyrox/chatbot'),
+        ], 'chatbot-views');
 
-
+        // Publish config file
         $this->publishes([
             __DIR__.'/../config/chatbot.php' => config_path('chatbot.php'),
-        ], 'config');
+        ], 'chatbot-config');
 
         // Load package routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
@@ -40,10 +38,9 @@ class ChatbotServiceProvider extends ServiceProvider
 
     public function register()
     {
-        // Merge configuration file with the app's config
+        // Merge package configuration with the application's config
         $this->mergeConfigFrom(
             __DIR__.'/../config/chatbot.php', 'chatbot'
         );
     }
-
 }
