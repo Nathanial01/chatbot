@@ -8,6 +8,13 @@ class ChatbotServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadMigrationsFrom(__DIR__ . '/./database/migrations');
+
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ], 'CreateChatHistoriesTable');
+
+
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/cyrox/chatbot'),
         ], 'cyrox-chatbot-assets');
@@ -16,13 +23,13 @@ class ChatbotServiceProvider extends ServiceProvider
         ], 'public');
         // Load views from the package
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'chatbot');
-
-        // Publish views so users can customize them
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'chatbot.generate');
+        // Publish views
         $this->publishes([
             __DIR__.'/../resources/views/chatbot.blade.php' => resource_path('views/vendor/cyrox/chatbot/chatbot.blade.php'),
         ], 'views');
 
-        // Publish the configuration file so users can modify API keys, model, etc.
+
         $this->publishes([
             __DIR__.'/../config/chatbot.php' => config_path('chatbot.php'),
         ], 'config');
