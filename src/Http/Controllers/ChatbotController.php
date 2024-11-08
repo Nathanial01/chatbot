@@ -15,7 +15,6 @@ class ChatbotController extends BaseController
      */
     public function index(User $user)
     {
-        // Get the user's name to personalize the chatbot experience
         $name = $user->name;
         return view('chatbot::chatbot', compact('name'));
     }
@@ -26,9 +25,9 @@ class ChatbotController extends BaseController
     public function generateResponse(Request $request): JsonResponse
     {
         try {
-            // Get the prompt from the request
+
             $prompt = $request->input('prompt');
-            // Get the authenticated user ID if available
+
             $userId = auth()->check() ? auth()->id() : null;
 
             // Save the user's message in the chat history
