@@ -9,11 +9,11 @@ class ChatbotServiceProvider extends ServiceProvider
     public function boot()
     {
         // Automatically load migrations from the package
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/./database/migrations');
 
         // Publish migrations (optional if auto-loaded)
         $this->publishes([
-            __DIR__ . '/../database/migrations' => database_path('migrations'),
+            __DIR__ . '/./database/migrations' => database_path('migrations'),
         ], 'chatbot-migrations');
 
         // Publish assets (public-facing files)
