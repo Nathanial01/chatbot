@@ -44,3 +44,4 @@ by using:
 @include('chatbot::components.chatbot')
 This will render the chatbot in your application's frontend.
 move the publice forlde from vendor/cyrox/chatbot/public to ur laravel seceleton public folder
+![image](https://github.com/user-attachments/assets/8c89150b-5e43-4569-b916-5f834123e8d3)
